@@ -16,6 +16,7 @@
 
 module gpiotest_top (
     // outputs
+    output  logic   spi_ssn,    // SPI flash CS, hold high to prevent UART conflict
     output  logic   led_red,    // red RGB led
     output  logic   led_green,  // green RGB led
     output  logic   led_blue,   // blue RGB led
@@ -57,6 +58,8 @@ module gpiotest_top (
     output  logic   gpio_46,
     output  logic   gpio_2
 );
+
+always_comb spi_ssn     = 1'b1;     // deselect SPI flash (pins shared with UART)
 
 // clock signals
 localparam      CLOCK_HZ    = 12_000_000;   // clock frequency in Hz
