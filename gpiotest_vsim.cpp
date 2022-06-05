@@ -1,4 +1,4 @@
-// C++ "driver" for UPduino example
+// C++ "driver" for UPduino gpiotest
 //
 // vim: set et ts=4 sw=4
 //
@@ -71,9 +71,9 @@ int main(int argc, char **argv)
 
     sigaction(SIGINT, &sigIntHandler, NULL);
 
-    if ((logfile = fopen(LOGDIR "example_vsim.log", "w")) == NULL)
+    if ((logfile = fopen(LOGDIR "gpiotest_vsim.log", "w")) == NULL)
     {
-        printf("can't create " LOGDIR "exxample_vsim.log\n");
+        printf("can't create " LOGDIR "gpiotest_vsim.log\n");
         exit(EXIT_FAILURE);
     }
 
@@ -89,11 +89,11 @@ int main(int argc, char **argv)
 
 #if VM_TRACE
 #if USE_FST
-    const auto trace_path = LOGDIR "example_vsim.fst";
+    const auto trace_path = LOGDIR "gpiotest_vsim.fst";
     logonly_printf("Writing FST waveform file to \"%s\"...\n", trace_path);
     VerilatedFstC *tfp = new VerilatedFstC;
 #else
-    const auto trace_path = LOGDIR "example_vsim.vcd";
+    const auto trace_path = LOGDIR "gpiotest_vsim.vcd";
     logonly_printf("Writing VCD waveform file to \"%s\"...\n", trace_path);
     VerilatedVcdC *tfp = new VerilatedVcdC;
 #endif
