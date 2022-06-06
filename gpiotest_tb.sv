@@ -98,7 +98,7 @@ initial begin
 
     $monitor("seq = %x\ngpio_23 = %x gpio_25 = %x gpio_26 = %x gpio_27 = %x gpio_32 = %x gpio_35 = %x gpio_31 = %x gpio_37 = %x\ngpio_34 = %x gpio_43 = %x gpio_36 = %x gpio_42 = %x gpio_38 = %x gpio_28 = %x gpio_20 = %x gpio_10 = %x\ngpio_12 = %x gpio_21 = %x gpio_13 = %x gpio_19 = %x gpio_18 = %x gpio_11 = %x gpio_9  = %x gpio_6  = %x\ngpio_44 = %x gpio_4  = %x gpio_3  = %x gpio_48 = %x gpio_45 = %x gpio_47 = %x gpio_46 = %x gpio_2 = %x", uut.seq, gpio_23, gpio_25, gpio_26, gpio_27, gpio_32, gpio_35, gpio_31, gpio_37, gpio_34, gpio_43, gpio_36, gpio_42, gpio_38, gpio_28, gpio_20, gpio_10, gpio_12, gpio_21, gpio_13, gpio_19, gpio_18, gpio_11, gpio_9, gpio_6, gpio_44, gpio_4, gpio_3, gpio_48, gpio_45, gpio_47, gpio_46, gpio_2);
 
-    #1000ms;
+    #10ms;
 
     $display("Ending simulation at %0t", $realtime);
     $finish;

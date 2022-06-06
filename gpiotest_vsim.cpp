@@ -12,13 +12,10 @@
 
 #include "Vgpiotest_top.h"
 
+// 1 to save FST waveform trace file
 #define VM_TRACE 1
-#define USE_FST 1               // FST format saves a lot of disk space vs older VCD
-#if USE_FST
+
 #include "verilated_fst_c.h" // for VM_TRACE
-#else
-#include "verilated_vcd_c.h" // for VM_TRACE
-#endif
 
 #define LOGDIR "logs/"
 
@@ -88,29 +85,16 @@ int main(int argc, char **argv)
     Vgpiotest_top *top = new Vgpiotest_top;
 
 #if VM_TRACE
-#if USE_FST
     const auto trace_path = LOGDIR "gpiotest_vsim.fst";
     logonly_printf("Writing FST waveform file to \"%s\"...\n", trace_path);
     VerilatedFstC *tfp = new VerilatedFstC;
-#else
-    const auto trace_path = LOGDIR "gpiotest_vsim.vcd";
-    logonly_printf("Writing VCD waveform file to \"%s\"...\n", trace_path);
-    VerilatedVcdC *tfp = new VerilatedVcdC;
-#endif
 
     top->trace(tfp, 99); // trace to heirarchal depth of 99
     tfp->open(trace_path);
 #endif
 
-    //    top->reset_i = 1;        // start in reset
-
     while (!done && !Verilated::gotFinish())
     {
-        if (main_time == 4)
-        {
-            //            top->reset_i = 0;        // tale out of reset after 2 cycles
-        }
-
         top->gpio_20 = 1; // clock rising
         top->eval();
 
